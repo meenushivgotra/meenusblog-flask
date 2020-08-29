@@ -1,0 +1,23 @@
+{
+  "params":
+  {
+   "local_server": "True",
+    "local_uri": "mysql+pymysql://root:@localhost/meenusblog",
+    "production_uri": "mysql+pymysql://root:@localhost/meenusblog",
+    "fb_url": "https://www.facebook.com/krishnaamaahi/",
+    "twitter_url": "https://twitter.com/Meenu_Shivgotra",
+    "github_url": "",
+    "blog_name": "Meenu's Blog",
+    "tagline": "Blog to share my code",
+    "gmail_user": "blogemail",
+    "gmail_password": "mailpassword",
+    "about": "My name is Meenu Shivgotra. I've done Btech in CSE. Now I'm working as web developer.",
+    "no_of_posts": 3,
+    "login_img": "login.jpg",
+    "admin": "admin",
+    "admin_password": "password",
+    "image_upload": ".\\static\\img"
+
+  }
+}
+
