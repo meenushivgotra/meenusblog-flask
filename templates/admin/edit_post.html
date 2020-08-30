@@ -11,13 +11,26 @@
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">Edit Post</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                             <li class="breadcrumb-item active">Edit Post</li>
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
                     </div>
                 </div>
+                {% with messages = get_flashed_messages(with_categories = true) %}
+                {% if messages %}
+                {% for category,message in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->

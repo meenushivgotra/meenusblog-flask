@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json, os
@@ -106,6 +106,8 @@ def edit(sno):
                     post.bg_img = secure_filename(image.filename)
                 db.session.add(post)
                 db.session.commit()
+                flash("Post added successfully.", "success")
+                return redirect('/dashboard')
 
             else:
                 post = Posts.query.filter_by(sno=sno).first()
@@ -119,13 +121,15 @@ def edit(sno):
                     post.bg_img = secure_filename(image.filename)
                 post.date = datetime.now()
                 db.session.commit()
-
+                flash("Post edited successfully.", "success")
                 return redirect('/edit/'+sno)
         post = Posts.query.filter_by(sno = sno).first()
         return render_template('admin/edit_post.html', params = params, post = post, sno = sno)
 
 @app.route('/')
 def home():
+    # flash("hi","success")
+    # flash("bye","danger")
     all_posts = Posts.query.filter_by().all()[::-1][:params['no_of_posts']]
     last = math.ceil(len(all_posts) / int(params['no_of_posts']))
     # [0: params['no_of_posts']]
@@ -169,7 +173,7 @@ def contact():
         db.session.add(entry)
         db.session.commit()
         mail.send_message('New message from'+' '+ name, sender = email , recipients = [params['gmail_user']], body = message + "\n" +phone + "\n" + email)
-
+        flash("Thanks for sending message. I will get back to you soon.", "success")
     return render_template('contact.html', params = params)
 
 @app.route('/post/<string:post_slug>', methods = ['GET'])

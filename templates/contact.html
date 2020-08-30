@@ -15,7 +15,19 @@
       </div>
     </div>
   </header>
-
+  {% with messages = get_flashed_messages(with_categories = true) %}
+  {% if messages %}
+  {% for category,message in messages %}
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+    {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
   <!-- Main Content -->
   <div class="container">
     <div class="row">

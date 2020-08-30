@@ -11,7 +11,7 @@
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
@@ -99,6 +99,19 @@
 <!--                                    <option value="3">December</option>-->
 
 <!--                                </select>-->
+                                {% with messages = get_flashed_messages(with_categories = true) %}
+                                {% if messages %}
+                                {% for category,message in messages %}
+                                <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+                                <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
+                                {{message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
                                 <h4 class="card-title">Posts of the Month</h4>
                                 <div class="table-responsive m-t-40">
                                     <table class="table stylish-table">
@@ -150,7 +163,7 @@
 <!--                                            </tr>-->
                                             {% for post in all_posts %}
                                             <tr>
-                                                <td>{{post.sno}}</td>
+                                                <td>{{loop.index}}</td>
                                                 <td>{{post.title}}</td>
                                                 <td>{{post.date.strftime('%B %d, %Y')}}</td>
                                                 <td><a href="/post/{{post.slug}}"  target="_blank"><span class="fa fa-eye"></span></a></td>
